@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <title>{% block title %}Title{% endblock %}</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -12,8 +13,11 @@ body {
 </head>
 <body>
 
-<h1>Job Postings </h1>
-<p>more info</p>
+{% if message %}
+  <p>{{ message }}</p>
+{% endif %}
+{% block content %}
+{% endblock %}
 
 </body>
 </html>
