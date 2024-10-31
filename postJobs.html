@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -13,6 +12,23 @@ body {
 <body>
 
 <h1>Post Jobs Form for Employers</h1>
+  <form action="/displayPage.html" method="post">
+    <p>
+      <label for="company_name">Name of your Company:</label><br>
+      <input type="text" id="company_name" name="company_name"/>
+    </p>
+    <p>
+      <label for="job_title">Job Title:</label><br>
+      <input type="text" id="job_title" name="job_title"/>
+    </p>
+    <p>
+      <label for="description">Brief Description of Job:</label><br>
+      <input type="text" id="description" name="description"/>
+    </p>
+    <p class="button">
+      <button type="submit">Submit Job Posting</button>
+    </p>
+  </form>
 <p>more info</p>
 
 </body>
