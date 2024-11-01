@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Post a Job
+{% endblock %}
+
+{% block content %}
+  <h1>Post Jobs Form for Employers</h1>
+  <form action="/postJobs" method="post">
+      <label for="company_name">Name of your Company:</label><br>
+      <input type="text" id="company_name" name="company_name"/>
+      <br>
+      <label for="job_title">Job Title:</label><br>
+      <input type="text" id="job_title" name="job_title"/>
+      <br>
+      <label for="description">Brief Description of Job:</label><br>
+      <input type="text" id="description" name="description"/>
+      <br>
+      <input type="submit" id="submit" value="Submit"/>
+      <br>
+  </form>
+{% endblock %}
+
