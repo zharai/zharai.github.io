@@ -5,8 +5,9 @@ Post a Job
 {% endblock %}
 
 {% block content %}
-  <h1>Post Jobs Form for Employers</h1>
-  <form action="/postJobs" method="post">
+  <div>
+    <h1>Post Jobs Form for Employers</h1>
+    <form action="/postJobs" method="post">
       <label for="company_name">Name of your Company:</label><br>
       <input type="text" id="company_name" name="company_name"/>
       <br>
@@ -18,6 +19,7 @@ Post a Job
       <br>
       <input type="submit" id="submit" value="Submit"/>
       <br>
-  </form>
+    </form>
+  </div>
 {% endblock %}
 
