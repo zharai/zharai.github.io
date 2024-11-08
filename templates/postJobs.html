@@ -9,7 +9,7 @@ Post a Job
     <h1>Post Jobs Form for Employers</h1>
     <form action="/postJobs" method="post">
       <label for="company_name">Name of your Company:</label><br>
-      <input type="text" id="company_name" name="company_name"/>
+      <input type="text" id="company_name" name="company_name" value="{{company_name if company_name}}"/>
       <br>
       <label for="job_title">Job Title:</label><br>
       <input type="text" id="job_title" name="job_title"/>
