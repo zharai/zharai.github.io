@@ -10,6 +10,7 @@ app = Flask(__name__, template_folder="templates")
 db = SQLAlchemy(app)
 
 
+
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     display = db.Column("jobPosting", db.String(1000), nullable=False)
