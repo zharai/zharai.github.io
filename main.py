@@ -52,10 +52,6 @@ def display():
     else:
         return redirect(url_for("postJobs"))
 
-def init_db():
-    with app.app_context():
-        db.create_all()
-
 @app.route('/admin', methods=["POST", "GET"])
 def admin_login():
     session['admin_logged_in'] = False
