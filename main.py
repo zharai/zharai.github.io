@@ -8,13 +8,17 @@ from datetime import timedelta
 
 app = Flask(__name__, template_folder="templates")
 db = SQLAlchemy(app)
-
-
+app.secret_key = "hi3u4h"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///info.sqlite3'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.permanent_session_lifetime = timedelta(days=30)
 
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     display = db.Column("jobPosting", db.String(1000), nullable=False)
     def __init__(self, display):
+        self.display = display
+        super().__init__()
 
 @app.route("/home")
 def home():
@@ -58,7 +62,7 @@ def admin_login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if username == "admin" and password == "adminpass":  #erm..
+        if username == "admin" and password == "adminpass":
             session['admin_logged_in'] = True
             return redirect(url_for('admin_panel'))
         else:
