@@ -8,7 +8,19 @@ from datetime import timedelta
 
 app = Flask(__name__, template_folder="templates")
 app.secret_key = "hi3u4h"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///info.sqlite3'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.permanent_session_lifetime = timedelta(days=30)
+
+db = SQLAlchemy(app)
+
+class info(db.Model):
+    display = db.Column("Job Posting", db.String(1000), primary_key=True)
+
+
+    def __init__(self, display):
+        self.display = display
+        super().__init__()
 
 @app.route("/home")
 def home():
@@ -23,7 +35,7 @@ def applications():
 def postJobs():
     if request.method == "POST": 
         session.permanent = True
-        display = request.form["company_name"]
+        display = "Name of Company: " + request.form["company_name"] + ". Job Position: "+ request.form ["job_title"] + ". Details: " + request.form["description"]
 
         session["display"] = display
 
@@ -35,10 +47,11 @@ def postJobs():
 def display():
     if "display" in session:
         display = session["display"]
-        return f"<h1>{display}</h1>"
+
+        return f"<b>{display}</b>"
     else:
         return redirect(url_for("postJobs"))
 
 if __name__ == "__main__":
-
+    db.create_all()
     app.run(debug=True)
