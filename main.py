@@ -7,11 +7,12 @@ from datetime import timedelta
 
 
 app = Flask(__name__, template_folder="templates")
-db = SQLAlchemy(app)
 app.secret_key = "hi3u4h"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///info.sqlite3'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.permanent_session_lifetime = timedelta(days=30)
+
+db = SQLAlchemy(app)
 
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
