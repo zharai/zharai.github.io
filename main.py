@@ -14,8 +14,9 @@ app.permanent_session_lifetime = timedelta(days=30)
 
 db = SQLAlchemy(app)
 
-class info(db.Model):
-    display = db.Column("Job Posting", db.String(1000), primary_key=True)
+class Info(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    display = db.Column("jobPosting", db.String(1000), nullable=False)
 
 
     def __init__(self, display):
@@ -28,7 +29,6 @@ def home():
 
 @app.route("/applications")
 def applications():
-    print("Rendering applicationPage.html")
     return render_template("applicationPage.html")
 
 @app.route("/postJobs", methods=["POST", "GET"])
@@ -36,8 +36,11 @@ def postJobs():
     if request.method == "POST": 
         session.permanent = True
         display = "Name of Company: " + request.form["company_name"] + ". Job Position: "+ request.form ["job_title"] + ". Details: " + request.form["description"]
-
         session["display"] = display
+        init_db()
+        inf = Info(display)
+        db.session.add(inf)
+        db.session.commit()
 
         return redirect(url_for("display")) 
     else:
@@ -52,6 +55,9 @@ def display():
     else:
         return redirect(url_for("postJobs"))
 
+def init_db():
+    with app.app_context():
+        db.create_all()
+
 if __name__ == "__main__":
-    db.create_all()
     app.run(debug=True)
