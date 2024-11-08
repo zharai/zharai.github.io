@@ -7,22 +7,20 @@ from datetime import timedelta
 
 
 app = Flask(__name__, template_folder="templates")
+db = SQLAlchemy(app)
 app.secret_key = "hi3u4h"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///info.sqlite3'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.permanent_session_lifetime = timedelta(days=30)
 
-db = SQLAlchemy(app)
+
 
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     display = db.Column("jobPosting", db.String(1000), nullable=False)
-
-
     def __init__(self, display):
         self.display = display
         super().__init__()
-
 @app.route("/home")
 def home():
     return render_template("homepage.html")
@@ -54,6 +52,32 @@ def display():
         return f"<b>{display}</b>"
     else:
         return redirect(url_for("postJobs"))
+
+def init_db():
+    with app.app_context():
+        db.create_all()
+
+@app.route('/admin', methods=["POST", "GET"])
+def admin_login():
+    session['admin_logged_in'] = False
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if username == "admin" and password == "adminpass":  #erm..
+            session['admin_logged_in'] = True
+            return redirect(url_for('admin_panel'))
+        else:
+            session['admin_logged_in'] = False
+            return render_template("admin_login.html", error="Invalid credentials. Try again.")   # error message does not show up
+    return render_template('admin_login.html')
+
+
+@app.route('/admin/panel')
+def admin_panel():
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    # get all job postings?
+    return render_template('admin_panel.html')
 
 def init_db():
     with app.app_context():
