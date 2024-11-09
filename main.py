@@ -44,8 +44,11 @@ class Application(db.Model):
 
 
 # Configure the upload folder
-UPLOAD_FOLDER = 'static/uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# Define the upload folder path
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)  # Create the folder if it doesn't exist
+# UPLOAD_FOLDER = 'static/uploads'
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @app.route("/apply/<int:job_id>", methods=["GET", "POST"])
@@ -56,23 +59,21 @@ def apply(job_id):
         email = request.form['email']
         resume_file = request.files['resume']
 
+        if resume_file and resume_file.filename != '':
+            filename = secure_filename(resume_file.filename)
+            resume_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            resume_file.save(resume_path)
+           
+           # Create and save the application
+            application = Application(student_name=student_name, email=email, resume_path=filename, job_id=job_id)
+            db.session.add(application)
+            db.session.commit()
+            return redirect(url_for('display'))  # Redirect back to the job display page
         
-    if resume_file and resume_file.filename != '':
-        filename = secure_filename(resume_file.filename)
-        resume_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        resume_file.save(resume_path)
+        else:
+            return render_template("applicationPage.html", job_post=job_post, error="Please upload a resume.")
 
-        # Create and save the application
-        application = Application(student_name=student_name, email=email, resume_path=resume_path, job_id=job_id)
-        db.session.add(application)
-        db.session.commit()
-        return redirect(url_for('display'))  # Redirect back to the job display page
-
-        
-    else:
-        pass
-    # Handle case where no file is selected
-    return render_template("apply.html", job_post=job_post, error="Please upload a resume.")
+    return render_template("applicationPage.html", job_post=job_post) #??/
 
 
        

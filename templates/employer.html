@@ -11,7 +11,7 @@
             <strong>Job ID:</strong> {{ application.job_id }}<br>
             <strong>Applicant Name:</strong> {{ application.student_name }}<br>
             <strong>Email:</strong> {{ application.email }}<br>
-            <!-- <a href="{{ url_for('static', filename='uploads/' ~ application.resume_path.split('/')[-1]) }}" download>Download Resume</a> -->
+            <a href="{{ url_for('static', filename='uploads/' + application.resume_path)}}" download>Download Resume</a>
         </li>
     {% endfor %}
 </ul>

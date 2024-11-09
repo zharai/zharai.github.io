@@ -1,30 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <!-- <div>
+  <div>
     <h1>Display Page</h1>
 
     {% if selected_posts %}
         <ul>
             {% for job in selected_posts %}
-                <li>{{ job.display }}</li>
+                <li>
+                    {{ job.display }}
+                    <a href="{{ url_for('apply', job_id=job.id) }}">Apply Now</a>
+                </li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No job postings available yet.</p>
     {% endif %}
-  </div> -->
-
-  <div>
-    <h1>Display Page</h1>
-
-  {% for job in selected_posts %}
-    <li>
-        {{ job.display }}
-        <a href="{{ url_for('apply', job_id=job.id) }}">Apply Now</a>
-    </li>
-{% endfor %}
-
-</div>
-
+  </div>
 {% endblock %}
