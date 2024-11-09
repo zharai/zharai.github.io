@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Guidance Department - Job Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Employer Page</h1>
-    </header>
 
-    <main>
-       
-    </main>
+{% extends "base.html" %}
 
-    
-</body>
-</html>
+{% block title %}View Applications{% endblock %}
+
+{% block content %}
+<h1>Submitted Applications</h1>
+<ul>
+    {% for application in applications %}
+        <li>
+            <strong>Job ID:</strong> {{ application.job_id }}<br>
+            <strong>Applicant Name:</strong> {{ application.student_name }}<br>
+            <strong>Email:</strong> {{ application.email }}<br>
+            <!-- <a href="{{ url_for('static', filename='uploads/' ~ application.resume_path.split('/')[-1]) }}" download>Download Resume</a> -->
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
 

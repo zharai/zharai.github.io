@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}
-Apply for a Job
-{% endblock %}
+{% block title %}Apply for {{ job_post.display }}{% endblock %}
 
 {% block content %}
-  <div>
-    <h1>Application Page Content</h1>
-  </div>
+  <h1>Apply for {{ job_post.display }}</h1>
+  <form action="{{ url_for('apply', job_id=job_post.id) }}" method="post" enctype="multipart/form-data">
+      <label for="student_name">Name:</label>
+      <input type="text" id="student_name" name="student_name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="resume">Upload Resume:</label>
+      <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx" required>
+      
+      <button type="submit">Submit Application</button>
+  </form>
 {% endblock %}
