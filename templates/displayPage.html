@@ -3,6 +3,15 @@
 {% block content %}
   <div>
     <h1>Display Page</h1>
-    <a>{{ display }}</a>
+
+    {% if selected_posts %}
+        <ul>
+            {% for job in selected_posts %}
+                <li>{{ job.display }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No job postings available yet.</p>
+    {% endif %}
   </div>
 {% endblock %}

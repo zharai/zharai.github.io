@@ -14,18 +14,21 @@ Admin Panel Page
 <body>
     <h2>Job Postings - Admin Panel</h2>
 
-    {% if job_posts %}
+    <form action="{{ url_for('admin_panel') }}" method="POST">
+        {% if job_posts %}
         <ul>
             {% for job in job_posts %}
                 <li>
+                    <input type="checkbox" name="selected_jobs" value="{{ job.id }}">
                     <a>{{ job.display }}</a>
                 </li>
             {% endfor %}
         </ul>
-    {% else %}
-        <p>No job postings available.</p>
-    {% endif %}
-
+        <button type="submit">Save Selected Jobs</button>
+        {% else %}
+            <p>No job postings available.</p>
+        {% endif %}
+    </form>
 </body>
 
 {% endblock %}

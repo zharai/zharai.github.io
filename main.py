@@ -39,12 +39,11 @@ def postJobs():
             + ". Details: " + request.form["description"]
         )
         session["display"] = display
-    
+        init_db()
         found_job = Info.query.filter_by(id=display).first()
         if found_job: 
             session["display"] = found_job.display
         else:
-            init_db()
             job_posting = Info(display)
             db.session.add(job_posting)
             db.session.commit()
@@ -54,7 +53,12 @@ def postJobs():
 
 @app.route("/display")
 def display():
-    return render_template("displayPage.html")
+    selected_ids = session.get("selected_job_posts", [])
+    if selected_ids:
+        selected_posts = Info.query.filter(Info.id.in_(selected_ids)).all()
+    else:
+        selected_posts = []
+    return render_template("displayPage.html", selected_posts = selected_posts)
 
 @app.route('/admin', methods=["POST", "GET"])
 def admin_login():
@@ -71,10 +75,16 @@ def admin_login():
     return render_template('admin_login.html')
 
 
-@app.route('/admin/panel')
+@app.route('/admin/panel', methods=["POST", "GET"])
 def admin_panel():
     if not session.get('admin_logged_in'):
         return redirect(url_for('admin_login'))
+    
+    if request.method == "POST":
+        selected_job_ids = request.form.getlist("selected_jobs")
+        session["selected_job_posts"] = [int(id) for id in selected_job_ids]
+
+
     job_posts = Info.query.all()
     return render_template('admin_panel.html', job_posts = job_posts)
 
