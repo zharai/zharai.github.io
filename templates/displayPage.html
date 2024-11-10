@@ -7,7 +7,10 @@
     {% if selected_posts %}
         <ul>
             {% for job in selected_posts %}
-                <li>{{ job.display }}</li>
+                <li>
+                    {{ job.display }}
+                    <a href="{{ url_for('apply', job_id=job.id) }}">Apply Now</a>
+                </li>
             {% endfor %}
         </ul>
     {% else %}

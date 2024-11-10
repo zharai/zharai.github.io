@@ -1,24 +1,29 @@
 {% extends "base.html" %}
 
 {% block title %}
-Admin Login Page
+Employer Login Page
 {% endblock %}
 
 {% block content %}
 
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login</title>
+    <title>Employer Login</title>
 </head>
 <body>
-    <h2>Admin Login</h2>
-    <form method="POST" action="/admin/login">
+    <h2>Employer Login</h2>
+    <form method="POST" action="/employer/login">
         <label for="username">Username:</label>
         <input type="text" name="username" required>
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <button type="submit">Login</button>
     </form>
+
+    <p>Don't have an account? <a href="{{ url_for('employer_signup') }}">Sign up here</a>.</p>
+
 </body>
+
+
 
 {% endblock %}
