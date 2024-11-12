@@ -110,7 +110,12 @@ header{
         padding: 1em;
         border: none;
         font-family: 'Montserrat';
+
+        :hover{
+            background: gray;
+        }
     }
+    
     
    }
 }

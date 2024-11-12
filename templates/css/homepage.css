@@ -91,6 +91,9 @@ header nav ul li a {
   border: none;
   font-family: "Montserrat";
 }
+.wrapper section.signup button :hover {
+  background: gray;
+}
 
 @media only screen and (min-width: 768px) {
   html {
@@ -120,4 +123,10 @@ header nav ul li a {
   html {
     font-size: 21px;
   }
-}/*# sourceMappingURL=homepage.css.map */
+}
+
+button:hover {
+  background-color: gray;
+}
+
+/*# sourceMappingURL=homepage.css.map */
