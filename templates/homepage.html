@@ -8,52 +8,84 @@
 <title>Page Title</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #9abbe6;
-}
-
-li {
-  display: inline;
-}
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #30578a;
-}
-
-</style>
-<!-- <link rel="stylesheet" type="text/css" href="homepage.css">  -->
-main
+<link rel="stylesheet" type="text/css" href="css/homepage.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to the Job Portal</h1>
+      <a href="#" class="logo">Job We Met</a>
+      <nav>
+
+        <ul>
+          <li><a href="displayPage.html">Jobs</a></li>
+          <li><a href="applicationPage.html">Applications</a></li>
+
+        </ul>
+    </nav>
     </header>
 
+  <div class="wrapper">
+    <section class="hero">
+      <div class = primary> </div>
+    </section>
+    <section class="sidebar">
+     <div class="inner">
+      <div class="clipper">
+        <h2>JOB WE MET</h2>
+
+      <div class="anim-panel">
+        <h5>A website dedicated to finding jobs for aspiring high school students.</h5>
+      </div>
+     </div>
+    </section>
+    <section class="signup">
+      <div class="inner">
+        <div class="clipper">
+        </div>
+        <div class="anim-panel">
+          <button class="cta"> Get Started</button>
+        </div>
+      </div>
+    </section>
+    </div>
     
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
-<ul>
-  <li><a href="homepage.html"> Recommended </a></li>
-  <li><a href="applicationPage.html"> Applications </a></li>
-  
-</ul>
-  
-main
+    <script> 
+
+      document.addEventListener("DOMContentLoaded", function(event){
+          window.addEventListener("load", function(e) {
+            
+            document.body.style.display = "block";
+            
+            
+            var tl = new TimelineMax();
+
+            tl.staggerFrom('section', 2,{
+              opacity: 0,
+              scale: .5, 
+              ease: Power2.easeOut
+            }, 0.2)
+
+            tl.staggerFrom('h1, h2', .5, {
+              opacity: 0,
+              y: -40,
+              ease: Power2.easeInOut
+
+            }, 0.2, "-=2")
+
+            tl.staggerFrom('.anim-panel', 1, {
+              opacity: 0,
+              y: -40,
+              ease: Power2.easeInOut
+
+            }, 0.2, "-=1.5")
+
+          }, false);
+
+      });
+
+ 
+    </script>
 </body>
 </html>
