@@ -14,6 +14,7 @@ Admin Panel Page
     <h2>Job Postings - Admin Panel</h2>
 
     <form action="{{ url_for('admin_panel') }}" method="POST">
+        <div>
         <ul>
             {% for job in job_posts %}
                 <li>
@@ -23,6 +24,7 @@ Admin Panel Page
             {% endfor %}
         </ul>
         <button type="submit">Save Selected Jobs</button>
+        </div>
     </form>
 </body>
 

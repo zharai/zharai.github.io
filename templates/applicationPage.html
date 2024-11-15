@@ -3,17 +3,54 @@
 {% block title %}Apply for {{ job_post.display }}{% endblock %}
 
 {% block content %}
-  <h1>Apply for {{ job_post.display }}</h1>
-  <form action="{{ url_for('apply', job_id=job_post.id) }}" method="post" enctype="multipart/form-data">
-      <label for="student_name">Name:</label>
-      <input type="text" id="student_name" name="student_name" required>
+
+
       
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
+
       
-      <label for="resume">Upload Resume:</label>
-      <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx" required>
       
-      <button type="submit">Submit Application</button>
+     
+      
+
   </form>
+
+
+
+  <link rel="stylesheet" type="text/css" href="../static/css/applicationPage.css">
+<link rel="stylesheet" href="{{ url_for('static', filename ='css/applicationPage.css') }}">
+
+<body>
+    <nav>
+        <h2>Anchor</h2>
+       
+    </nav>
+<main>
+<div class="login-box">
+  <form action="{{ url_for('apply', job_id=job_post.id) }}" method="post" enctype="multipart/form-data">
+    <div class="login-header">
+        <header>
+          Apply for {{ job_post.display }}
+        </header>
+    </div>
+    <div class="input-box">
+
+      <input type="text" class="input-field" id="student_name" name="student_name" placeholder="Student Name">
+    </div>
+    <div class="input-box">
+      <input type="email" class="input-field" id="email" name="email" placeholder="Email"required>
+    </div>
+    <div class="input-box">
+      <label for="resume">Upload Resume:</label>
+      <input type="file" class="input-field" id="resume" name="resume" accept=".pdf, .doc, .docx" required>
+    </div>
+   
+
+    <div class="input-submit">
+        
+      <button type="submit" class="submit-btn">Submit Application</button>
+    </div>
+
+  </form>
+
+
 {% endblock %}

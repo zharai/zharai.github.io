@@ -93,6 +93,10 @@ def apply(job_id):
 def home():
     return render_template("homepage.html")
 
+@app.route("/form")
+def form():
+    return render_template("form.html")
+
 @app.route("/postJobs", methods=["POST", "GET"])
 def postJobs():
     if not session.get('employer_logged_in'):

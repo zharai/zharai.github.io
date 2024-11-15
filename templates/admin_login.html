@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}
+<!-- {% block title %}
 Admin Login Page
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
 
@@ -10,15 +10,59 @@ Admin Login Page
     <meta charset="UTF-8">
     <title>Admin Login</title>
 </head>
+<link rel="stylesheet" type="text/css" href="../static/css/admin_log.css">
+<link rel="stylesheet" href="{{ url_for('static', filename ='css/admin_log.css') }}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+</head>
 <body>
-    <h2>Admin Login</h2>
-    <form method="POST" action="/admin/login">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
-        <button type="submit">Login</button>
+    <nav>
+        <h2>Anchor</h2>
+       
+    </nav>
+<main>
+    <div class="login-box">
+        <form method="POST" action="/admin/login">
+        <div class="login-header">
+            <header>Admin Login</header>
+        </div>
+        <div class="input-box">
+            <input type="text" class="input-field" name="username" placeholder= "Username" required>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" name="password" placeholder="Password" required>
+        </div>
+       
+
+        <div class="input-submit">
+            
+        <button type="submit" class="submit-btn">Login</button>
+        </div>
+
+
+
     </form>
+   
+    </div>
+  
+
+</main>
+    
+   
+       
+        
+        
+       
+
+   
+
 </body>
+
+
+
+{% endblock %}
+
 
 {% endblock %}

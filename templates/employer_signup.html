@@ -1,19 +1,49 @@
 {% extends "base.html" %}
 
-{% block title %}
+<!-- {% block title %}
 Employer Signup Page
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
-<form method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username" required>
-    <label for="password">Password:</label>
-    <input type="password" name="password" required>
-    <button type="submit">Sign Up</button>
+<link rel="stylesheet" type="text/css" href="../static/css/emp_sign.css">
+<link rel="stylesheet" href="{{ url_for('static', filename ='css/emp_sign.css') }}">
+
+<body>
+    <nav>
+        <h2>Anchor</h2>
+       
+    </nav>
+<main>
+<div class="login-box">
+    <form method="POST">
+    <div class="login-header">
+        <header>Employer Signup</header>
+    </div>
+    <div class="input-box">
+        <input type="text" class="input-field" name="username" placeholder="Username" required>
+    </div>
+    <div class="input-box">
+        <input type="password" class="input-field" name="password" placeholder="Password" required>
+    </div>
+   
+
+    <div class="input-submit">
+        
+    <button type="submit" class="submit-btn">Signup</button>
+    </div>
+
+
     {% if error %}
-        <p>{{ error }}</p>
+    <p>{{ error }}</p>
     {% endif %}
+
+
+  
 </form>
 
+
+</div>
+</main>
+</body>
 {% endblock %}
+

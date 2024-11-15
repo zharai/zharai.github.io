@@ -1,26 +1,62 @@
 {% extends "base.html" %}
 
-{% block title %}
+<!-- {% block title %}
 Employer Login Page
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="../static/css/emp_log.css">
+<link rel="stylesheet" href="{{ url_for('static', filename ='css/emp_log.css') }}">
 
 <head>
     <meta charset="UTF-8">
     <title>Employer Login</title>
+    
 </head>
 <body>
-    <h2>Employer Login</h2>
-    <form method="POST" action="/employer/login">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
-        <button type="submit">Login</button>
-    </form>
+    <nav>
+        <h2>Anchor</h2>
+       
+    </nav>
+    <main>
+    <div class="login-box">
+        <form method="POST" action="/employer/login">
+        <div class="login-header">
+            <header>Employer Login</header>
+        </div>
+        <div class="input-box">
+            <input type="text" class="input-field" name="username" placeholder="Username" required>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" name="password" placeholder="Password" required>
+        </div>
+       
 
-    <p> <a href="employer_signup.html">Don't have an account? Sign up here</a>.</p>
+        <div class="input-submit">
+            
+        <button type="submit" class="submit-btn">Login</button>
+        </div>
+
+        <div class="signup">
+            <section>
+                <p> Don't have an Anchor Employer account? <a href="/employer/signup">Sign up here.</a></p>
+            </section>
+        </div>
+        
+    </form>
+   
+    </div>
+  
+
+   
+    
+   
+       
+    </main>    
+        
+       
+
+   
 
 </body>
 

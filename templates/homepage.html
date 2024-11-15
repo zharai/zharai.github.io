@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Guidance Department - Job Portal</title>
-    <link rel="stylesheet" type="text/css" href="css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/homepage.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename ='css/homepage.css') }}">
 </head>
 <body>
     <header>
-      <a href="#" class="logo">Job We Met</a>
+      <a href="#" class="logo">Anchor</a>
       <nav>
 
         <ul>
-          <li><a href="#">Jobs</a></li>
-          <li><a href="#">Applications</a></li>
+          <li><a href="#">About Us</a></li>
 
         </ul>
     </nav>
@@ -26,7 +26,7 @@
     <section class="sidebar">
      <div class="inner">
       <div class="clipper">
-        <h2>JOB WE MET</h2>
+        <h2>Anchor</h2>
 
       <div class="anim-panel">
         <h5>A website dedicated to finding jobs for aspiring high school students.</h5>
@@ -38,7 +38,7 @@
         <div class="clipper">
         </div>
         <div class="anim-panel">
-          <a href="form.html"><button class="cta"> Get Started</button></a>
+          <a href="/form"><button class="cta"> Get Started</button></a>
         </div>
       </div>
     </section>
