@@ -1,0 +1,98 @@
+/* style.css */
+
+/* Basic Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Page Title */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+/* Job List */
+.job-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Job Card */
+.job-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(100% - 40px);
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.job-card:hover {
+    transform: scale(1.02);
+}
+
+/* Job Description */
+.job-description {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #555;
+}
+
+/* Apply Button */
+.apply-button {
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.apply-button:hover {
+    background-color: #0056b3;
+}
+
+/* No Jobs Available */
+.no-jobs {
+    text-align: center;
+    color: #666;
+    font-size: 1.2em;
+    margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .job-card {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .job-card {
+        width: calc(33.33% - 40px);
+    }
+}
