@@ -61,6 +61,16 @@ class Application(db.Model):
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+       
+
+@app.route("/home")
+def home():
+    return render_template("homepage.html")
+
+
+@app.route("/")
+def root():
+    return redirect(url_for("home"))
 
 @app.route("/apply/<int:job_id>", methods=["GET", "POST"])
 def apply(job_id):
@@ -86,12 +96,6 @@ def apply(job_id):
 
     return render_template("applicationPage.html", job_post=job_post)
 
-
-       
-
-@app.route("/home")
-def home():
-    return render_template("homepage.html")
 
 @app.route("/form")
 def form():
