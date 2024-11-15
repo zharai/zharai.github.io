@@ -8,15 +8,17 @@ from datetime import timedelta
 import os
 from werkzeug.utils import secure_filename
 
-
+#Initialize the Flask Application
 app = Flask(__name__, template_folder="templates")
-app.secret_key = "hi3u4h"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///info.sqlite3'
+app.secret_key = "hi3u4h" #Secrect key for session management
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///info.sqlite3' #database configuration
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.permanent_session_lifetime = timedelta(days=30)
+app.permanent_session_lifetime = timedelta(days=30) #Session duration
 
+#Initialize SQLAlchemy for database interaction
 db = SQLAlchemy(app)
 
+# Define the Employer model, representing a table in the database
 class Employer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), nullable=False, unique=True)
@@ -27,6 +29,7 @@ class Employer(db.Model):
         self.password = password
 
 
+# Define the Info model to store job postings
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     display = db.Column("jobPosting", db.String(1000), nullable=False)
@@ -43,12 +46,13 @@ class Info(db.Model):
         super().__init__()
 
 
+# Define the Application model to store job applications
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     student_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     resume_path = db.Column(db.String(200), nullable=False)  # Path to uploaded resume file
-    job_id = db.Column(db.Integer, db.ForeignKey('info.id'), nullable=False)  # Foreign key linking to job post
+    job_id = db.Column(db.Integer, db.ForeignKey('info.id'), nullable=False)  # Foreign key linking to job post (Info)
 
     def __init__(self, student_name, email, resume_path, job_id):
         self.student_name = student_name
@@ -57,21 +61,22 @@ class Application(db.Model):
         self.job_id = job_id
 
 
-
+# Configure the upload folder for storing resumes
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True) # Ensure the folder exists
 
        
-
+# Route for the homepage
 @app.route("/home")
 def home():
     return render_template("homepage.html")
 
-
+# Redirect root URL to the homepage
 @app.route("/")
 def root():
     return redirect(url_for("home"))
 
+# Route to apply for a job
 @app.route("/apply/<int:job_id>", methods=["GET", "POST"])
 def apply(job_id):
     job_post = Info.query.get_or_404(job_id)  # Get job post by ID
@@ -96,26 +101,25 @@ def apply(job_id):
 
     return render_template("applicationPage.html", job_post=job_post)
 
-
+#route for "student or employer?" form
 @app.route("/form")
 def form():
     return render_template("form.html")
 
+# Route for posting new jobs
 @app.route("/postJobs", methods=["POST", "GET"])
 def postJobs():
     if not session.get('employer_logged_in'):
         return redirect(url_for('employer_login'))
     
     if request.method == "POST": 
-        session.permanent = True
+        session.permanent = True # Extend session duration
         display = (
             "Name of Company: " + request.form["company_name"] 
             + ". Job Position: "+ request.form ["job_title"] 
             + ". Details: " + request.form["description"]
         )
         
-        employer_id = session.get('employer_id')
-
         # Get the employer's ID from the session
         employer_id = session.get('employer_id')
 
@@ -128,12 +132,15 @@ def postJobs():
     else:
         return render_template("postJobs.html")
 
+
+# Route to display approved job postings
 @app.route("/display")
 def display():
     approved_posts = Info.query.filter_by(is_approved=True).all()
     return render_template("displayPage.html", selected_posts=approved_posts)
 
 
+# Route for admin login
 @app.route('/admin/login', methods=["POST", "GET"])
 def admin_login():
     session['employer_logged_in'] = False
@@ -141,7 +148,7 @@ def admin_login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if username == "admin" and password == "adminpass":
+        if username == "admin" and password == "adminpass": # admin credentials check
             session['admin_logged_in'] = True
             return redirect(url_for('admin_panel'))
         else:
@@ -150,6 +157,7 @@ def admin_login():
     return render_template('admin_login.html')
 
 
+# Admin panel to approve or view all job postings
 @app.route('/admin/panel', methods=["POST", "GET"])
 def admin_panel():
     if not session.get('admin_logged_in'):
@@ -160,13 +168,14 @@ def admin_panel():
         for job_id in selected_job_ids:
             job = Info.query.get(job_id)
             if job:
-                job.is_approved = True
+                job.is_approved = True # Approve selected jobs
         db.session.commit()
 
     job_posts = Info.query.all()
     return render_template('admin_panel.html', job_posts = job_posts)
 
 
+# Route for employer login
 @app.route('/employer/login', methods=["POST", "GET"])
 def employer_login():
     session['admin_logged_in'] = False  # Clear admin login state
@@ -186,7 +195,7 @@ def employer_login():
             return render_template("employer_login.html", error="Invalid credentials. Try again.")
     return render_template('employer_login.html')
 
-
+# Route for employers to view applications for their job posts
 @app.route('/employer')
 def view_applications():
     print("Session at /employer:", session)  # Debugging: Check session variables
@@ -196,14 +205,14 @@ def view_applications():
     employer_id = session.get('employer_id') 
     employer_jobs = Info.query.filter_by(employer_id=employer_id).all()
     
-    # Get applications for the employer's jobs
+    # Fetch applications for jobs posted by the employer
     job_ids = [job.id for job in employer_jobs]
     applications = Application.query.filter(Application.job_id.in_(job_ids)).all()
     
     return render_template("employer.html", applications=applications)
 
 
-
+# Route for employer signup
 @app.route('/employer/signup', methods=["POST", "GET"])
 def employer_signup():
     if request.method == "POST":
@@ -225,9 +234,11 @@ def employer_signup():
     return render_template("employer_signup.html")
 
 
+# Initialize the database
 def init_db():
     with app.app_context():
         db.create_all()
 
+# Run the Flask app
 if __name__ == "__main__":
     app.run(debug=True)
