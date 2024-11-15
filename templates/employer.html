@@ -1,18 +1,16 @@
-
 {% extends "base.html" %}
 
-{% block title %}View Applications{% endblock %}
-
 {% block content %}
-<h1>Submitted Applications</h1>
-<ul>
-    {% for application in applications %}
-        <li>
-            <strong>Applicant Name:</strong> {{ application.student_name }}<br>
-            <strong>Email:</strong> {{ application.email }}<br>
-            <a href="{{ url_for('static', filename='uploads/' + application.resume_path)}}" download>Download Resume</a>
-        </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <h1>Submitted Applications</h1>
+    <div class="application-list">
+        {% for application in applications %}
+            <div class="card">
+                <p class="applicant-name">{{ application.student_name }}</p>
+                <p class="applicant-email">{{ application.email }}</p>
+                <a href="{{ url_for('static', filename='uploads/' ~ application.resume_path) }}" download>Download Resume</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
-
