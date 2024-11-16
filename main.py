@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 
 #Initialize the Flask Application
 app = Flask(__name__, template_folder="templates")
-app.secret_key = "hi3u4h" #Secrect key for session management
+app.secret_key = "hi3u4h" #Secret key for session management
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///info.sqlite3' #database configuration
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.permanent_session_lifetime = timedelta(days=30) #Session duration
@@ -70,6 +70,10 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True) # Ensure the folder exis
 @app.route("/home")
 def home():
     return render_template("homepage.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 # Redirect root URL to the homepage
 @app.route("/")
