@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body, html {
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  font-family: "Montserrat";
+  display: none;
+}
+
+header {
+  position: absolute;
+  padding: 1em;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 2em);
+  background: white;
+}
+header a {
+  text-decoration: none;
+  color: black;
+}
+header a.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+header nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+header nav ul li a {
+  padding: 1em;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: auto;
+}
+.wrapper section {
+  height: 100%;
+  padding: 3em;
+}
+.wrapper section h1, .wrapper section h2 {
+  text-transform: uppercase;
+  margin: 0;
+}
+.wrapper section h2 {
+  font-size: 1.4rem;
+}
+.wrapper section .primary {
+  padding: 1.5em;
+  background-position: 3em;
+  margin-top: 3em;
+  margin-left: -3em;
+  display: inline-block;
+}
+.wrapper section .clipper {
+  overflow: hidden;
+  height: 100%;
+}
+.wrapper section.hero {
+  background: url("../assets/about.jpg");
+  height: 100%;
+  background-size: cover;
+  margin-bottom: 15em;
+}
+.wrapper section.hero p {
+  width: 70%;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+.wrapper section.hero h1 {
+  font-size: 2.4rem;
+}
+.wrapper section.sidebar {
+  background: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.6em;
+  padding: 2em;
+}
+.wrapper section.sidebar button {
+  width: 100%;
+  background: black;
+  color: white;
+  margin: 1em;
+  padding: 2em;
+  border: none;
+  font-family: "Montserrat";
+}
+.wrapper section.sidebar button :hover {
+  background: gray;
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media only screen and (min-width: 1020px) {
+  header {
+    background: none;
+  }
+  header .logo {
+    color: white;
+  }
+  .wrapper {
+    grid-template-columns: 70% auto;
+    grid-template-rows: 100% auto;
+    grid-template-areas: "hero description";
+    height: 100vh;
+  }
+  section.hero {
+    grid-area: hero;
+  }
+  section {
+    display: grid;
+    grid-template-rows: auto;
+    align-items: center;
+  }
+}
+@media only screen and (min-width: 1800px) {
+  html {
+    font-size: 21px;
+  }
+}/*# sourceMappingURL=about.css.map */
