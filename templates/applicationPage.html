@@ -20,16 +20,13 @@
 <link rel="stylesheet" href="{{ url_for('static', filename ='css/applicationPage.css') }}">
 
 <body>
-    <nav>
-        <h2>Anchor</h2>
-       
-    </nav>
+
 <main>
 <div class="login-box">
   <form action="{{ url_for('apply', job_id=job_post.id) }}" method="post" enctype="multipart/form-data">
     <div class="login-header">
         <header>
-          Apply for {{ job_post.display }}
+         {{ job_post.display }}
         </header>
     </div>
     <div class="input-box">
