@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %}
+Job Display
+{% endblock %}
+
 {% block content %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
  <div class="container">
@@ -10,7 +14,7 @@
        <div class="job-list">
            {% for job in selected_posts %}
                <div class="job-card">
-                   <p class="job-description">{{ job.display }}</p>
+                   <p class="job-description">{{ job.display|safe }}</p>
                    <a href="{{ url_for('apply', job_id=job.id) }}" class="apply-button">Apply Now</a>
                </div>
            {% endfor %}

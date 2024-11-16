@@ -5,11 +5,6 @@ Admin Panel Page
 {% endblock %}
 
 {% block content %}
-
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Panel</title>
-</head>
 <body>
     <h2>Job Postings - Admin Panel</h2>
 
@@ -19,7 +14,7 @@ Admin Panel Page
             {% for job in job_posts %}
                 <li>
                     <input type="checkbox" name="selected_jobs" value="{{ job.id }}">
-                    <a>{{ job.display }}</a>
+                    <a>{{ job.display|safe }}</a>
                 </li>
             {% endfor %}
         </ul>
