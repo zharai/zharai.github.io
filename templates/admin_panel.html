@@ -14,7 +14,7 @@ Admin Panel Page
             {% for job in job_posts %}
                 <li>
                     <input type="checkbox" name="selected_jobs" value="{{ job.id }}">
-                    <a>{{ job.display }}</a>
+                    <a>{{ job.display|safe }}</a>
                 </li>
             {% endfor %}
         </ul>

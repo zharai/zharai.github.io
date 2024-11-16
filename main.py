@@ -119,9 +119,9 @@ def postJobs():
     if request.method == "POST": 
         session.permanent = True # Extend session duration
         display = (
-            "Name of Company: " + request.form["company_name"] 
-            + ". Job Position: "+ request.form ["job_title"] 
-            + ". Details: " + request.form["description"]
+            "Name of Company: " + request.form["company_name"] + "." + "<br>" 
+            + "Job Position: "+ request.form ["job_title"] + "." + "<br>"
+            + "Details: " + request.form["description"]
         )
         
         # Get the employer's ID from the session
