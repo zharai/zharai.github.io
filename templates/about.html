@@ -1,31 +1,129 @@
 {% extends "base.html" %}
 
-{% block title %}
+<!-- {% block title %}
 About Page
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
-    <div class="Research and Sources">
+    <link rel="stylesheet" href="../static/css/about.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename ='css/about.css') }}">
+    
+
+    
+    <h1>  </h1>
+           
+  
+                
+                <header>
+                  <a href="/home" class="logo">Anchor</a>
+                  <nav>
+            
+                    <ul>
+            
+                    </ul>
+                </nav>
+                </header>
+            
+              <div class="wrapper">
+                <section class="hero">
+                  <div class = primary> </div>
+                </section>
+                <section class="sidebar">
+                 <div class="inner">
+                  <div class="clipper">
+                    <h2>Our Mission</h2>
+            
+                  <div class="anim-panel">
+                    <p>
+                        According to the Pew Research center, the percentage of high school students that are able to find 
+                        summer jobs has been decreasing for the past century (Pew Research Center). 
+                        That’s not all though: youth unemployment is on the rise (Bureau of Labor Statistics).
+                        This is because young people have less experience with applying to jobs and knowing which jobs to apply to. 
+                        With jobs being such a crucial experience for students to step into the future, something needs to change. 
+                        That is where Anchor comes in. Easy to use, secure, and curated, 
+                        Anchor makes it effortless to put your resume into the world and find your ideal job.
+                
+                    </p>
+                    <br>
+                    <br>
+                   <a href="https://www.pewresearch.org/short-reads/2022/06/21/
+                            after-dropping-in-2020-teen-summer-employment-may-be-poised-to-continue-its-slow-comeback/ 
+                           ">
+                            Source 1
+                
+                        </a> 
+                
+                  <a href="https://www.weforum.org/stories/2024/08/global-youth-employment-future-jobs/ 
+                            ">
+                            Source 2
+                         </a>
+                        
+                     
+                
+                       
+                            <a href= "https://www.bls.gov/news.release/pdf/youth.pdf">
+                                Source 3
+                             </a>
+            
+                   
+            
+                  </div>
+                 </div>
+                </section>
+            
+                </div>
+                
+                <script src="script.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+            
+                <script> 
+            
+                  document.addEventListener("DOMContentLoaded", function(event){
+                      window.addEventListener("load", function(e) {
+                        
+                        document.body.style.display = "block";
+                        
+                        
+                        var tl = new TimelineMax();
+            
+                        tl.staggerFrom('section', 2,{
+                          opacity: 0,
+                          scale: .5, 
+                          ease: Power2.easeOut
+                        }, 0.2)
+            
+                        tl.staggerFrom('h1, h2', .5, {
+                          opacity: 0,
+                          y: -40,
+                          ease: Power2.easeInOut
+            
+                        }, 0.2, "-=2")
+            
+                        tl.staggerFrom('.anim-panel', 1, {
+                          opacity: 0,
+                          y: -40,
+                          ease: Power2.easeInOut
+            
+                        }, 0.2, "-=1.5")
+            
+                      }, false);
+            
+                  });
+            
+             
+                </script>
+    
+            
+            
+    
+         
+    
+   
+
+    
         
-        <h1>Our Mission</h1>
-        <a>
-            According to the Pew Research center, the percentage of high school students that are able to find 
-            summer jobs has been decreasing for the past century (Pew Research Center). 
-            That’s not all though: youth unemployment is on the rise (Bureau of Labor Statistics).
-            This is because young people have less experience with applying to jobs and knowing which jobs to apply to. 
-            With jobs being such a crucial experience for students to step into the future, something needs to change. 
-            That is where Anchor comes in. Easy to use, secure, and curated, 
-            Anchor makes it effortless to put your resume into the world and find your ideal job.
+       
 
-        </a>
-        <br>
-        <br>
-        <a>
-            https://www.pewresearch.org/short-reads/2022/06/21/
-            after-dropping-in-2020-teen-summer-employment-may-be-poised-to-continue-its-slow-comeback/ 
-            https://www.weforum.org/stories/2024/08/global-youth-employment-future-jobs/ 
-            https://www.bls.gov/news.release/pdf/youth.pdf 
-
-        </a>
     </div>
+  
 {% endblock %}

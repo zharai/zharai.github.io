@@ -15,7 +15,6 @@ main {
 
 body {
   background: url(../assets/sign_log_bg.jpg);
-  background-size: cover;
 }
 
 .login-box {
