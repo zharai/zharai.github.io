@@ -23,7 +23,7 @@ body {
   justify-content: center;
   flex-direction: column;
   width: 440px;
-  height: 100%;
+  height: 80vh;
   padding: 30px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 0.6);
@@ -32,11 +32,25 @@ body {
 .login-header {
   text-align: center;
   margin: 20px 0 40 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .login-header header {
   color: #333;
   font-size: 20px;
   font-weight: 600;
+
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  text-align: left;
+  align-items: left;
+  height: 100px; 
+  max-width: 400px; 
+  margin-top: 6em;
+  margin-bottom:10em;
+  
 }
 
 .input-box .input-field {
@@ -44,6 +58,7 @@ body {
   height: 60px;
   font-size: 17px;
   padding: 0 25px;
+  margin-top: 15px;
   margin-bottom: 15px;
   border-radius: 30px;
   border: none;

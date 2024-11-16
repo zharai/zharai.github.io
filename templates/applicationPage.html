@@ -12,6 +12,7 @@
 <main>
 <div class="login-box">
   <form action="{{ url_for('apply', job_id=job_post.id) }}" method="post" enctype="multipart/form-data">
+    <br>
     <div class="login-header">
         <header>
          {{ job_post.display|safe }}
@@ -19,7 +20,6 @@
     </div>
     <br><br><br>
     <div class="input-box">
-
       <input type="text" class="input-field" id="student_name" name="student_name" placeholder="Student Name">
     </div>
     <div class="input-box">
@@ -38,5 +38,5 @@
 
   </form>
 
-
+</div>
 {% endblock %}
